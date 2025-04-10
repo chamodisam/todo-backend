@@ -23,7 +23,7 @@ This is a basic ASP.NET Core Web API project built from scratch, featuring a con
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/backend.git
+git clone https://github.com/chamodisam/todo-backend.git
 cd backend
 ```
 
