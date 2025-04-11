@@ -1,46 +1,20 @@
 using backend.Models;
-using backend.Data;
+using backend.Repositories;
 
 namespace backend.Services;
 
-public class TodoService
+public class TodoService : ITodoService
 {
-    private readonly TodoContext _context;
+    private readonly ITodoRepository _repository;
 
-    public TodoService(TodoContext context)
+    public TodoService(ITodoRepository repository)
     {
-        _context = context;
+        _repository = repository;
     }
 
-    public IEnumerable<Todo> GetAll() => _context.Todos.ToList();
-
-    public Todo? GetById(int id) => _context.Todos.Find(id);
-
-    public Todo Add(Todo todo)
-    {
-        _context.Todos.Add(todo);
-        _context.SaveChanges();
-        return todo;
-    }
-
-    public bool Update(int id, Todo updated)
-    {
-        var todo = _context.Todos.Find(id);
-        if (todo == null) return false;
-
-        todo.Title = updated.Title;
-        todo.Completed = updated.Completed;
-        _context.SaveChanges();
-        return true;
-    }
-
-    public bool Delete(int id)
-    {
-        var todo = _context.Todos.Find(id);
-        if (todo == null) return false;
-
-        _context.Todos.Remove(todo);
-        _context.SaveChanges();
-        return true;
-    }
+    public IEnumerable<Todo> GetAll() => _repository.GetAll();
+    public Todo? GetById(int id) => _repository.GetById(id);
+    public Todo Add(Todo todo) => _repository.Add(todo);
+    public bool Update(int id, Todo updated) => _repository.Update(id, updated);
+    public bool Delete(int id) => _repository.Delete(id);
 }

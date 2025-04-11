@@ -1,13 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using backend.Data;
 using backend.Services;
+using backend.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<TodoService>(); // Add the service
-
 builder.Services.AddDbContext<TodoContext>(options =>
     options.UseSqlite("Data Source=todos.db"));
+
+builder.Services.AddScoped<ITodoRepository, TodoRepository>();
+builder.Services.AddScoped<ITodoService, TodoService>();
 
 builder.Services.AddControllers();
 

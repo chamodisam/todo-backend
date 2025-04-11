@@ -8,9 +8,9 @@ namespace backend.Controllers;
 [Route("api/todos")]
 public class TodoController : ControllerBase
 {
-    private readonly TodoService _service;
+    private readonly ITodoService _service;
 
-    public TodoController(TodoService service)
+    public TodoController(ITodoService service)
     {
         _service = service;
     }
