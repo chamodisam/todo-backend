@@ -11,6 +11,11 @@ obj/
 # VS Code settings
 .vscode/
 
+# SQLite database
+*.db
+*.db-shm
+*.db-wal
+
 # Rider IDE files
 .idea/
 
@@ -26,3 +31,6 @@ secrets.json
 # OS stuff
 .DS_Store
 Thumbs.db
+
+# EF Core design-time files
+*.DesignTime.cs
