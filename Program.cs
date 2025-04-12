@@ -11,10 +11,19 @@ builder.Services.AddDbContext<TodoContext>(options =>
 builder.Services.AddScoped<ITodoRepository, TodoRepository>();
 builder.Services.AddScoped<ITodoService, TodoService>();
 
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ConfigureHttpsDefaults(httpsOptions =>
+    {
+        // Nothing here for local https
+    });
+});
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
+app.UseHttpsRedirection(); // Redirect to https
 app.MapControllers(); // Enable controller routing
 
 app.Run();
