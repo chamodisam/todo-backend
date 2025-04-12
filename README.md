@@ -31,6 +31,21 @@ cd backend
 ```bash
 dotnet run
 ```
+
+#### 🔐 HTTPS Support
+To run locally with HTTPS:
+
+```bash
+dotnet dev-certs https --trust
+dotnet run
+```
+Make sure https profile is on top of the profiles in Properties/launchSettings.json
+If not, use
+```bash
+dotnet run --launch-profile https
+```
+
+
 ## 3. API Endpoints
 
 You can test these endpoints using Postman, curl, or connect them to a frontend client.
